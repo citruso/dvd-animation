@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Ubuntu"
+      type="text/css"
+    />
+    <style>
+      body {
+        margin: 0 0;
+        overflow: hidden;
+        box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5),
+          1px 1px 5px rgba(255, 255, 255, 1);
+        /*animation: trans 3s infinite alternate-reverse;*/
+      }
+      #block {
+        position: absolute;
+        padding: 0 10 0 10;
+        border: 1px solid black;
+        border-radius: 10px;
+        box-shadow: 7px 10px rgba(0, 0, 0, 0.3);
+        box-sizing: border-box;
+        font-family: "Ubuntu";
+        font-size: 128px;
+        text-rendering: geometricPrecision;
+        user-select: none;
+      }
+      @keyframes trans {
+        0% {
+          background-color: #e48585;
+        }
+        100% {
+          background-color: #edeef0;
+        }
+      }
+    </style>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function () {
+        var dvd = document.body.children[0]
+        var speed = 1
+        var direction = [speed, speed]
+        for (let x = 0; x < 2; x++) {
+          direction[x] *= [1, -1][Math.floor(Math.random() * 2)]
+        }
+        dvd.style.top = "calc(50% - " + dvd.offsetHeight + "px/2)"
+        dvd.style.left = "calc(50% - " + dvd.offsetWidth + "px/2)"
+        setInterval(function () {
+          dvd.style.left = dvd.offsetLeft + direction[0]
+          dvd.style.top = dvd.offsetTop + direction[1]
+
+          if (
+            dvd.offsetLeft <= 0 ||
+            dvd.offsetLeft + dvd.offsetWidth >= window.innerWidth
+          )
+            direction[0] *= -1
+          if (
+            dvd.offsetTop <= 0 ||
+            dvd.offsetTop + dvd.offsetHeight >= window.innerHeight
+          )
+            direction[1] *= -1
+        }, 5)
+      })
+    </script>
+  </head>
+  <body>
+    <div id="block">404</div>
+  </body>
+</html>
